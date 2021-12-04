@@ -6,7 +6,6 @@ def find_numbers(lines:[], pos:int, direction:bool):
         else:
             key += 1
             
-    print(key)
     if direction:
         if key >= 0:
             key = '1'
@@ -52,7 +51,6 @@ v = find_numbers(lines, 0, True)
 oxygen = v[0]
 oxygen_v = convert_binary_dec(oxygen)
 print(oxygen_v)
-
 
 v = find_numbers(lines, 0, False)
 scrub = v[0]
