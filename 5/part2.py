@@ -40,12 +40,10 @@ for line in lines:
                 matrix[x1][y2] += 1
                 x1 -= 1
     elif abs(y2 - y1) == abs(x2 - x1):
-        print('%d,%d -> %d,%d' % (x1, y1, x2, y2))
         # 4 cases, pos pos, pos neg, neg pos, neg neg
         y = y2 - y1
         x = x2 - x1
-        if x >= 0 and y >= 0:
-            print('pos pos %d,%d -> %d,%d' % (x1, y1, x2, y2))
+        if x >= 0 and y >= 0: # pos, pos
             while x1 <= x2:
                 if x1 not in matrix:
                     matrix[x1] = {}
@@ -54,36 +52,36 @@ for line in lines:
                 matrix[x1][y1] += 1
                 x1 += 1
                 y1 += 1
-        elif x >= 0 and y <= 0:
-            print('pos neg %d,%d -> %d,%d' % (x1, y1, x2, y2))
+        elif x >= 0 and y <= 0: # pos, neg
+            # come back here
             while x1 <= x2:
+                print('b', x1, y1)
                 if x1 not in matrix:
                     matrix[x1] = {}
-                if y2 not in matrix[x1]:
-                    matrix[x1][y2] = 0
-                matrix[x1][y2] += 1
+                if y1 not in matrix[x1]:
+                    matrix[x1][y1] = 0
+                matrix[x1][y1] += 1
                 x1 += 1
-                y2 -= 1
-        elif x < 0 and y > 0:
-            print('neg pos %d,%d -> %d,%d' % (x1, y1, x2, y2))
-            while x1 <= x2:
-                if x2 not in matrix:
-                    matrix[x2] = {}
-                if y1 not in matrix[x2]:
-                    matrix[x2][y1] = 0
-                matrix[x2][y1] += 1
-                x2 -= 1
+                y1 -= 1
+        elif x < 0 and y > 0: # neg, pos
+            # issues
+            while y1 <= y2: # 8, 0
+                if x1 not in matrix:
+                    matrix[x1] = {}
+                if y1 not in matrix[x1]:
+                    matrix[x1][y1] = 0
+                matrix[x1][y1] += 1
+                x1 -= 1
                 y1 += 1
-        elif x < 0 and y < 0:
-            print('neg neg %d,%d -> %d,%d' % (x1, y1, x2, y2))
-            while x1 <= x2:
-                if x2 not in matrix:
-                    matrix[x2] = {}
-                if y2 not in matrix[x2]:
-                    matrix[x2][y2] = 0
-                matrix[x2][y2] += 1
-                x2 -= 1
-                y2 -= 1
+        elif x < 0 and y < 0: # neg, neg
+            while x1 >= x2:
+                if x1 not in matrix:
+                    matrix[x1] = {}
+                if y1 not in matrix[x1]:
+                    matrix[x1][y1] = 0
+                matrix[x1][y1] += 1
+                x1 -= 1
+                y1 -= 1
             
         
 for y in matrix:
