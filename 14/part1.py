@@ -9,7 +9,7 @@ for line in lines[2:]:
     value = array[1].strip()
     pairs[key] = value
 
-for z in range(0, 10):
+for z in range(0, 40):
     new_poly = polymer
     middle_pos = 1
     for i in range(0, len(polymer) - 1):
