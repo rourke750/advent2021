@@ -49,18 +49,14 @@ for line in lines:
 
 matrix = []
 for y in range(5):
-    top_row = []
-    for x in range(5):
-            #[['_' for x in range(max_x)] for y in range(max_y)]
-        for r_pos in range(len(temp_matrix)):
-            r = [[(x + y + z) % 10 +1 if (x + y + z) >= 10 else (x + y + z) for z in row] for row in temp_matrix[r_pos]]
-            top_row.extend(r)
-        #for q in r:
-            #print(q)
-            #break
-            #top_row.extend(q)
-    matrix.append(top_row)
- 
+    for row in temp_matrix:
+        array = []
+        for x in range(5):
+            #[[(x + y + z) % 10 +1 if (x + y + z) >= 10 else (x + y + z) for z in row] for row in temp_matrix[r_pos]]
+            #print(row)
+            array.extend([(x + y + z) % 10 +1 if (x + y + z) >= 10 else (x + y + z) for z in row])
+        matrix.append(array)
+
 for y in range(len(matrix)):
     for x in range(len(matrix[y])):
         key = "%d-%d" % (x,y)
@@ -74,6 +70,5 @@ r = progress(matrix, weights, 0, 0, {})
 c = 0
 while r is not None:
     r = progress(r[0], r[1], r[2], r[3], r[4])
-print(len(weights))
-print(len(matrix))
-print(len(matrix[0]))
+print(weights)
+print(matrix[49][49])
