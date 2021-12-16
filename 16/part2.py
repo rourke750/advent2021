@@ -21,7 +21,7 @@ def process_packet(pos:int, binary_str:str):
         temp_bit_string = ''
         while True:
             temp_bit_string += binary_str[pos+1:pos+5]
-            if binary_str[pos] == '1': # last packet:
+            if binary_str[pos] == '1':
                 pos += 5
             else:
                 pos += 5
@@ -31,7 +31,7 @@ def process_packet(pos:int, binary_str:str):
         length_type_id = int(binary_str[pos], 2)
         pos += 1
         value = 0
-        if packet_type == 2 or packet_type == 5 or packet_type == 6 or packet_type == 7:
+        if packet_type == 1 or packet_type == 2 or packet_type == 5 or packet_type == 6 or packet_type == 7:
             value = -1
             
         if length_type_id == 0:
@@ -45,7 +45,7 @@ def process_packet(pos:int, binary_str:str):
                 if packet_type == 0:
                     value += temp_value
                 elif packet_type == 1:
-                    if value == 0:
+                    if value == -1:
                         value = 1
                     value *= temp_value
                 elif packet_type == 2:
@@ -78,7 +78,7 @@ def process_packet(pos:int, binary_str:str):
                 if packet_type == 0:
                     value += temp_value
                 elif packet_type == 1:
-                    if value == 0:
+                    if value == -1:
                         value = 1
                     value *= temp_value
                 elif packet_type == 2:
@@ -107,7 +107,6 @@ def process_packet(pos:int, binary_str:str):
         if value == -1:
             value = 0
         return value, pos
-
 version_count, pos = process_packet(0, binary_str)
 print(version_count)
 print(pos)
@@ -117,4 +116,4 @@ print(len(binary_str))
 # wrong 300349675719184
 # wrong 300349646524448
 # wrong 110449114800
-        
+#       110434737925      
